@@ -1,31 +1,26 @@
 // https://leetcode.cn/problems/merge-two-sorted-lists/description/
+
+function ListNode(val, next = null) {
+    this.val = val
+    this.next = next
+}
 function mergeTwoLists(list1, list2) {
-    let mergedList = [];
-    let i = 0, j = 0;
+    let dummy = new ListNode(-1) // 虚拟节点
+    let curr = dummy
 
-    while (i < list1.length && j < list2.length) {
-        if (list1[i] <= list2[j]) {
-            mergedList.push(list1[i]);
-            i++;
+    while (list1 && list2) {
+        if (list1.val < list2.val) {
+            curr.next = list1
+            list1 = list1.next
+
         } else {
-            mergedList.push(list2[j]);
-            j++;
+            curr.next = list2
+            list2 = list2.next
         }
+        curr = curr.next
     }
-
-    // If there are remaining elements in list1
-    while (i < list1.length) {
-        mergedList.push(list1[i]);
-        i++;
-    }
-
-    // If there are remaining elements in list2
-    while (j < list2.length) {
-        mergedList.push(list2[j]);
-        j++;
-    }
-
-    return mergedList;
+    curr.next = list1 || list2
+    return dummy.next
 }
 
 console.log(mergeTwoLists([1, 2, 4], [1, 3, 4])) // [1, 1, 2, 3, 4, 4];
