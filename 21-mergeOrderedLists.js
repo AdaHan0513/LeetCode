@@ -1,8 +1,8 @@
 // https://leetcode.cn/problems/merge-two-sorted-lists/description/
 
 function ListNode(val, next = null) {
-    this.val = val
-    this.next = next
+    this.val = val      // 存当前数据
+    this.next = next    // 存连接关系，null表示链表的尾部
 }
 function mergeTwoLists(list1, list2) {
     let dummy = new ListNode(-1) // 虚拟节点
